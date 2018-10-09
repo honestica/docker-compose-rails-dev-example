@@ -118,6 +118,6 @@ services:
       <<: *app_environment
       # PostgreSQL Test Database:
       DATABASE_URL: postgres://postgres:3x4mpl3@db.local:5432/example_test
-      # Run the app in the 'test' environment, instead of the default 'developent'
+      # Run the app in the 'test' environment, instead of the default 'development'
       RACK_ENV: test
       RAILS_ENV: test
