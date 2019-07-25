@@ -1,5 +1,5 @@
 # 1: Use ruby 2.2.6 as base:
-FROM ruby:2.2.6
+FROM ruby:2.4.6
 
 # 2: We'll set the application path as the working directory
 WORKDIR /usr/src/app
@@ -40,4 +40,4 @@ RUN set -ex \
 # 7: Install the current project gems - they can be safely changed later during
 # development via `bundle install` or `bundle update`:
 ADD Gemfile* /usr/src/app/
-RUN set -ex && bundle --retry 3
+RUN set -ex && bundle install
