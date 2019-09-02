@@ -36,7 +36,7 @@ RUN set -ex \
 # app assets, and finally change the owner of the code to 'nobody':
 ADD . /usr/src/app
 RUN set -ex \
-  && apk add --no-cache --virtual .app-builddeps nodejs=10.16.0-r0 \
+  && apk add --no-cache --virtual .app-builddeps nodejs>=10.16 \
   && mkdir -p /usr/src/app/tmp/cache \
   && mkdir -p /usr/src/app/tmp/pids \
   && mkdir -p /usr/src/app/tmp/sockets \
