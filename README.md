@@ -1,6 +1,6 @@
 # Example of a Rails App with BuildPack
 
-Install pack cli from https://buildpacks.io/docs/tools/pack/
+Install docker and pack cli from https://buildpacks.io/docs/tools/pack/
 
 Build the image
 ```
@@ -12,7 +12,7 @@ Setup the database
 docker run -e DATABASE_URL=postgres://admin:admin@127.0.0.1/rails_example?pool=5 -e SECRET_KEY_BASE=example --net=host rails-example rake db:setup
 ```
 
-Run it:
+Run it (we suppose you already installed postgres)
 ```
 docker run -e DATABASE_URL=postgres://admin:admin@127.0.0.1/rails_example?pool=5 -e SECRET_KEY_BASE=example --net=host rails-example
 ```
