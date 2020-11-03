@@ -1,27 +1,23 @@
-# Example of a Rails App with Docker Compose for development
+# Example of a Rails App with BuildPack
 
-This is an example of how I use [Docker](https://docs.docker.com/) and
-[Docker Compose](https://docs.docker.com/compose/) to develop my rails apps.
+Install pack cli from https://buildpacks.io/docs/tools/pack/
 
-It is an ideal project setup for new and experienced developers alike, and allows
-to a nearly trouble-free environment setup in their development machines.
+Build the image
+```
+pack build rails_example
+```
 
-In this example we'll fire up a full app environment consisting of the following:
+Setup the database
+```
+docker run -e DATABASE_URL=postgres://admin:admin@127.0.0.1/rails_example?pool=5 -e SECRET_KEY_BASE=example --net=host rails-example rake db:setup
+```
 
- - A [postgres container](https://github.com/vovimayhem/docker-compose-rails-dev-example/blob/master/docker-compose.yml#L17)
- which hosts the app's database.
- - A [redis container](https://github.com/vovimayhem/docker-compose-rails-dev-example/blob/master/docker-compose.yml#L38)
- which hosts the app's job queue.
- - An example Rails app running 3 processes on separate containers:
-   - A [`jobs` container](https://github.com/vovimayhem/docker-compose-rails-dev-example/blob/master/docker-compose.yml#L51)
-   running the app's job processor ([Sidekiq](http://sidekiq.org/)).
-   - A [`worker` container](https://github.com/vovimayhem/docker-compose-rails-dev-example/blob/master/docker-compose.yml#L105)
-   running the Rails web server.
-   - A [`test` container](https://github.com/vovimayhem/docker-compose-rails-dev-example/blob/master/docker-compose.yml#L113)
-   running [guard](http://guardgem.org/), which fires tests automatically whenever a change in the
-   app code is detected.
+Run it:
+```
+docker run -e DATABASE_URL=postgres://admin:admin@127.0.0.1/rails_example?pool=5 -e SECRET_KEY_BASE=example --net=host rails-example
+```
 
-You'll need to follow some instructions to get this example running:
+You should be able to access to http://127.0.0.1:5000/posts
 
 # License
 
